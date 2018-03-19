@@ -1,7 +1,7 @@
 body {
     font: 16px/1.5 arial, Helvetica, "Microsoft YaHei";
     color: #fff;
-    background: #0D1129;
+    background: #202040;
 }
 a {
     color: #3D7AF0;
@@ -49,15 +49,15 @@ img {
     color: #999;
 }
 
-.logo{
+.logo {
     display: block;
     width: 320px;
-    height: 136px;
+    height: fit-content;
     margin: 0 auto 40px;
     overflow: hidden;
 }
 .logo img {
-    height: 420px;
+    height: 104px;
     margin-top: 60px;
 }
 .logo svg {
