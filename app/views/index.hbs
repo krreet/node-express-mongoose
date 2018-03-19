@@ -1,0 +1,116 @@
+
+
+<div id="doc">
+    <div class="header">
+    <a href="" class="lang-btn" data-lang="ZH" data-btn="EN" >中文</a>
+    <a href="" class="lang-btn" data-lang="EN" data-btn="ZH" style="display: none;">En</a>
+</div>
+    <div class="lang-wrap" data-lang="ZH" style="display: none;">
+        <div class="container">
+            <h1 class="logo"><a href="https://t.me/AdhiveGlobal"><img src="/public/airdrop/logo-white.svg"/></a></h1>
+            <div class="intro">
+                <div class="join"><a href="https://t.me/AdhiveGlobal" target="_blank">加入 ADH 电报群</a></div>
+                <p>输入你的以太坊地址，即可领取或查看已获得的空投数量，我们将在三周内发送 ADH 。加入官方群来了解更多信息。</p>
+            </div>
+            <form>
+                <fieldset>
+                    <input type="text" class="ipt-txt ipt-address" placeholder="输入你的以太坊钱包地址"/>
+                    <input type="submit" value="提 交" class="ipt-btn"/>
+                </fieldset>
+            </form>
+        </div>
+        <div class="footer">
+            <a href="https://adh.one" target="_blank">https://adh.one</a>
+        </div>
+    </div>
+    <div class="lang-wrap" data-lang="EN" >
+        <div class="container">
+            <h1 class="logo"><a href="https://t.me/AdhiveGlobal"><img src="/public/airdrop/logo-white.svg"/></a></h1>
+            <div class="intro">
+                <div class="join"><a href="https://t.me/AdhiveGlobal" target="_blank">Join the ADH telegram group!</a>
+                </div>
+                <p>Enter your ETH wallet address to check your airdrop balance. We will send out ADH tokens in about 3 weeks. Check our official telegram groups for details.</p>
+            </div>
+            <form>
+                <fieldset>
+                    <input type="text" class="ipt-txt ipt-address" placeholder="Enter your ETH wallet address" id="iptAddress"/>
+                    <input type="submit" value="Submit" class="ipt-btn"/>
+                </fieldset>
+            </form>
+        </div>
+        <div class="footer">
+            <a href="https://sapien-network.herokuapp.com/" target="_blank">SAPIEN NETWORK</a>
+        </div>
+    </div>
+</div>
+
+<script src="/public/airdrop/jquery-1.8.3.js"></script>
+<script src="/public/airdrop/layer.js"></script>
+<script>
+var langBtn = $('.lang-btn');
+var lang = langBtn.filter(':visible').attr('data-btn');
+var langWrap = $('.lang-wrap');
+var langMsg = {
+    'ZH': {
+        'addressIsEmpty': '钱包地址不能为空！',
+        'successMsgCopy': '复制成功！',
+        'errorMsgCopy': '复制失败！',
+        'errorMsg101': '请填写正确的以太坊钱包地址！',
+        'errorMsg404': '当前人数过多，请稍后再试！',
+        'errorMsgDefault': '请求失败，请稍后再试！'
+    },
+    'EN': {
+        'addressIsEmpty': 'The address of the wallet can not be empty!',
+        'successMsgCopy': 'Successful replication!',
+        'errorMsgCopy': 'Replication failed!',
+        'errorMsg101': 'Please enter a valid ETH wallet address!',
+        'errorMsg404': 'The system is busy, please try again later!',
+        'errorMsgDefault': 'The request failed, please try again later!'
+    }
+}
+langBtn.on('click', function() {
+    lang = $(this).attr('data-lang');
+    langWrap.filter('[data-lang="' + lang + '"]').show().siblings('.lang-wrap').hide();
+    langBtn.filter('[data-btn="' + lang + '"]').show().siblings().hide();
+    return false;
+});
+</script>
+<script>
+    $(document).on('click', '.ipt-btn', function () {
+        var address = $(this).siblings('.ipt-address').val();
+        var data = {
+            address: address
+        }
+        if (!data.address) {
+            layer.msg(langMsg[lang].addressIsEmpty, {
+                shade: [0.8, '#000'],
+                time: 1500
+            });
+            return false;
+        }
+        if ($(this).hasClass('issubmit')) {
+            return false;
+        }
+        $(this).addClass('issubmit');
+        var that = this;
+        var url = window.location.href;
+        $.ajax({
+            type: "post",
+            url: url,
+            data: data,
+            dataType: 'json'
+        }).done(function (res) {
+            $(that).removeClass('issubmit');
+            if (res.code > 0) {
+                var msg = langMsg[lang]['errorMsg' + res.code] || langMsg[lang].errorMsgDefault;
+                layer.msg(msg, {
+                    shade: [0.8, '#000'],
+                    time: 1500
+                });
+            } else {
+                window.location.href = res.url;
+            }
+        });
+        return false;
+    });
+</script>

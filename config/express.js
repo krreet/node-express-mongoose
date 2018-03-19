@@ -17,7 +17,8 @@ var mongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var winston = require('winston');
 var helpers = require('view-helpers');
-var jade = require('jade');
+// var jade = require('jade');
+var hbs = require('express-handlebars');
 var config = require('./');
 var pkg = require('../package.json');
 
@@ -54,10 +55,10 @@ module.exports = function (app, passport) {
   // Don't log during tests
   // Logging middleware
   if (env !== 'test') app.use(morgan(log));
-
+app.engine('hbs', hbs({ extname: 'hbs' , defaultLayout: 'layout' , layoutsDir:config.root +  '/app/views/layouts' }));
   // set views path and default layout
   app.set('views', config.root + '/app/views');
-  app.set('view engine', 'jade');
+  app.set('view engine', 'hbs');
 
   // expose package.json to views
   app.use(function (req, res, next) {
@@ -105,7 +106,7 @@ module.exports = function (app, passport) {
   app.use(helpers(pkg.name));
 
   // adds CSRF support
-  if (process.env.NODE_ENV !== 'test') {
+  if (process.env.NODE_ENV == 'testy') {
     app.use(csrf());
 
     // This could be moved to view-helpers :-)

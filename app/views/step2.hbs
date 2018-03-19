@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!-- saved from url=(0049)http://adh.one/index/dashboard/r/0A2B1A99D11398E4 -->
+<html><head>
+    <meta charset="utf-8">
+    <title>ADH Airdrop</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="/public/airdrop/reset.css">
+    <link rel="stylesheet" href="/public/airdrop/style.css">
+<style></style><link rel="stylesheet" href="http://adh.one/public/airdrop/layer.css?v=3.1.0" id="layuicss-layer"></head>
+<body>
+<div id="doc">
+    <div class="header">
+    <a href="/{{code}}" class="lang-btn" data-lang="ZH" data-btn="EN">中文</a>
+    <a href="/{{code}}"class="lang-btn" data-lang="EN" data-btn="ZH" style="display: none;">En</a>
+</div>
+    <div class="lang-wrap" data-lang="ZH" style="display: none;">
+        <div class="container">
+            <h1 class="logo"><a href="https://t.me/AdhiveGlobal2"><img src="/public/airdrop/logo-white.svg"></a></h1>
+            <div class="intro">
+                <p>活动规则</p>
+            </div>
+            <div class="step">
+                <fieldset>
+                    <legend>1. 关注 <a href="https://t.me/adhivechannel" target="_blank">ADH 电报频道</a> 并加入 <a href="https://t.me/AdhiveGlobal2" target="_blank">ADH 电报群</a>
+                    </legend>
+                </fieldset>
+                <fieldset>
+                    <legend>2. 把以下验证号发到电报群里即可获得 200 ADH！</legend>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt-txt ipt-code1" readonly="" value="/0A2B1A99D11398E4">
+                        <button class="ipt-btn copy-btn" data-clipboard-action="copy" data-clipboard-target=".ipt-code1">复制</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>3. 把以下链接分享给好友，每成功推荐一个好友入群，即可再获得 120 ADH！</legend>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt-txt ipt-link1" readonly="" value="https://adh.one/?r=0A2B1A99D11398E4">
+                        <button class="ipt-btn copy-btn" data-clipboard-action="copy" data-clipboard-target=".ipt-link1">复制</button>
+                    </div>
+                </fieldset>
+            </div>
+            <ul class="count cl">
+                <li class="times">
+                    <p>已成功邀请（人次）</p>
+                    <p class="num">{{invited}}</p>
+                </li>
+                <li class="coins">
+                    <p>已赚取 ADH（枚数）</p>
+                    <p class="num">{{earned}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+            <a href="https://adh.one/" target="_blank">https://adh.one</a>
+        </div>
+    </div>
+    <div class="lang-wrap" data-lang="EN">
+        <div class="container">
+            <h1 class="logo"><a href="https://t.me/AdhiveGlobal2"><img src="/public/airdrop/logo-white.svg"></a></h1>
+            <div class="intro">
+                <p>Airdrop Step</p>
+            </div>
+            <div class="step">
+                <fieldset>
+                    <legend>1. Join the <a href="https://t.me/adhivechannel" target="_blank">ADH telegram channel</a> and the <a href="https://t.me/AdhiveGlobal2" target="_blank">ADH telegram group</a>
+                    </legend>
+                </fieldset>
+                <fieldset>
+                    <legend>2. Send the following verification number to the group to get 200 ADH!
+                    </legend>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt-txt ipt-code2" readonly="" value="/{{code}}">
+                        <button class="ipt-btn copy-btn" data-clipboard-action="copy" data-clipboard-target=".ipt-code2">Copy</button>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>3. Share the following link to your friends, each successful recommendation to join this group can get 120 ADH!
+                    </legend>
+                    <div class="ipt-wrap">
+                        <input type="text" class="ipt-txt ipt-link2" readonly="" value="https://adh.one/?r={{code}}">
+                        <button class="ipt-btn copy-btn" data-clipboard-action="copy" data-clipboard-target=".ipt-link2">Copy</button>
+                    </div>
+                </fieldset>
+            </div>
+            <ul class="count cl">
+                <li class="times">
+                    <p>Invited</p>
+                    <p class="num">{{invited}}</p>
+                </li>
+                <li class="coins">
+                    <p>Earned ADH</p>
+                    <p class="num">{{earned}}</p>
+                </li>
+            </ul>
+        </div>
+        <div class="footer">
+           <a href="https://sapien-network.herokuapp.com/" target="_blank">SAPIEN NETWORK</a>
+        </div>
+    </div>
+</div>
+
+<script src="/public/airdrop/jquery-1.8.3.js"></script>
+<script src="/public/airdrop/layer.js"></script>
+<script>
+var langBtn = $('.lang-btn');
+var lang = langBtn.filter(':visible').attr('data-btn');
+var langWrap = $('.lang-wrap');
+var langMsg = {
+    'ZH': {
+        'addressIsEmpty': '钱包地址不能为空！',
+        'successMsgCopy': '复制成功！',
+        'errorMsgCopy': '复制失败！',
+        'errorMsg101': '请填写正确的以太坊钱包地址！',
+        'errorMsg404': '当前人数过多，请稍后再试！',
+        'errorMsgDefault': '请求失败，请稍后再试！'
+    },
+    'EN': {
+        'addressIsEmpty': 'The address of the wallet can not be empty!',
+        'successMsgCopy': 'Successful replication!',
+        'errorMsgCopy': 'Replication failed!',
+        'errorMsg101': 'Please enter a valid ETH wallet address!',
+        'errorMsg404': 'The system is busy, please try again later!',
+        'errorMsgDefault': 'The request failed, please try again later!'
+    }
+}
+langBtn.on('click', function() {
+    lang = $(this).attr('data-lang');
+    langWrap.filter('[data-lang="' + lang + '"]').show().siblings('.lang-wrap').hide();
+    langBtn.filter('[data-btn="' + lang + '"]').show().siblings().hide();
+    return false;
+});
+</script>
+
+<script src="/public/airdrop/clipboard.min.js"></script>
+<script>
+    $('.lang-btn').on('click', function () {
+        $(this).parents('.lang-wrap').hide().siblings().show();
+        return false;
+    });
+
+
+    var clipboard = new Clipboard('.copy-btn');
+
+    clipboard.on('success', function (e) {
+        layer.msg(langMsg[lang].successMsgCopy, {
+            shade: [0.8, '#000'],
+            time: 1000
+        });
+    });
+
+    clipboard.on('error', function (e) {
+        layer.msg(langMsg[lang].errorMsgCopy, {
+            shade: [0.8, '#000'],
+            time: 1000
+        });
+    });
+</script>
+
+
+</body></html>

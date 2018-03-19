@@ -12,7 +12,29 @@ const home = require('../app/controllers/home');
 
 module.exports = function (app, passport) {
 
-  app.get('/', home.index);
+
+  app.get('/', function (req, res, next) {
+    res.render('index', { title: 'Cool, huh!', condition: true, anyArray: [1,2,3] });
+  });
+
+
+
+  app.post('/', (req , res) => {
+
+    let address = req.body.address;
+    res.json({ 'url' : '/tuytdudgfd' });
+
+  });
+
+
+
+  app.get('/:dynamicroute', function ( req,res) {
+   // res.send({ "param" : req.params.dynamicroute });
+
+    res.render('step2', { code: req.params.dynamicroute ,  invited : 5 , earned : 400  });
+});
+
+  // app.get('/', home.index);
 
   /**
    * Error handling
@@ -27,12 +49,12 @@ module.exports = function (app, passport) {
     }
     console.error(err.stack);
     // error page
-    res.status(500).render('500', { error: err.stack });
+    res.status(500).render('error', { error: err.stack });
   });
 
   // assume 404 since no middleware responded
   app.use(function (req, res, next) {
-    res.status(404).render('404', {
+    res.status(404).render('error', {
       url: req.originalUrl,
       error: 'Not found'
     });
