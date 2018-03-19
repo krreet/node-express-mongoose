@@ -51,13 +51,13 @@ img {
 
 .logo {
     display: block;
-    width: 320px;
+  /*   width: 320px; */
     height: fit-content;
     margin: 0 auto 40px;
     overflow: hidden;
 }
 .logo img {
-    height: 104px;
+    height: 200px;
     margin-top: 60px;
 }
 .logo svg {
