@@ -44,36 +44,48 @@ points : '0'
     });
     if (ethereum_address.isAddress(eadd)) {
       console.log('Valid ethereum address.');
+      User.findOne({ ethaddress : eadd }).exec().then(doc => {
+
+        refcode =   doc._id;
+
+      }).catch(err => {
+      
+
+        user.save().then(result => {
+          console.log( 'save result' + result);
+          
+          if (refsucc){
+          
+          
+            let temppoint;
+          
+            User.findOne({ _id : refsucc }).exec().then(doc => {
+          
+              temppoint = +doc.points;
+          
+              if (temppoint){
+          let poi = temppoint + 1;
+                User.update( { _id : refsucc } , { $set : { points : poi.toString() } } ).exec().then( res => { console.log(res);  }).catch(err => console.log(err));
+              }
+          
+            }  ).catch(err => { console.log(err) ;
+            
+            });
+          
+           
+          } 
+          
+          
+          res.json({ 'url' : '/' + refcode });
+              }).catch(err => {
+                res.json({ 'url' : '/' + refcode });
+              
+                console.log(err);});
+
+
+        console.log(err);});
    
-    user.save().then(result => {
-console.log( 'save result' + result);
 
-if (refsucc){
-
-
-  let temppoint;
-
-  User.findOne({ _id : refsucc }).exec().then(doc => {
-
-    temppoint = +doc.points;
-
-    if (temppoint){
-let poi = temppoint + 1;
-      User.update( { _id : refsucc } , { $set : { points : poi.toString() } } ).exec().then( res => { console.log(res);  }).catch(err => console.log(err));
-    }
-
-  }  ).catch(err => { console.log(err) ;
-  
-  });
-
- 
-} 
-
-
-res.json({ 'url' : '/' + refcode });
-    }).catch(err => {
-      res.json({ 'url' : '/' + refcode });
-      console.log(err);});
       
       
     
