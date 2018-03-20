@@ -90,13 +90,14 @@ res.json({ 'url' : '/' + refcode });
 
   app.get('/:dynamicroute', function ( req,res) {
    // res.send({ "param" : req.params.dynamicroute });
+   let dyn = req.params.dynamicroute 
 let invited = 0 ;
 let  earned = 0;
 
 
    User.findOne({
 
-    ethaddress : eadd
+    _id : dyn
    }).exec().then(doc => {
 console.log(doc);
 
