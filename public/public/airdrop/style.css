@@ -53,12 +53,12 @@ img {
     display: block;
   /*   width: 320px; */
     height: fit-content;
-    margin: 0 auto 40px;
+    margin: 0 auto 20px;
     overflow: hidden;
 }
 .logo img {
     height: 200px;
-    margin-top: 60px;
+    margin-top: 5px;
 }
 .logo svg {
     fill: #369;

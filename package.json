@@ -24,6 +24,7 @@
     "cross-env": "~5.0.0",
     "csurf": "1.9.0",
     "dotenv": "~4.0.0",
+    "ethereum-address": "0.0.4",
     "express": "4.15.3",
     "express-handlebars": "^3.0.0",
     "express-session": "~1.15.1",
