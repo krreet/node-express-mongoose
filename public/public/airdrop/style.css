@@ -57,7 +57,7 @@ img {
     overflow: hidden;
 }
 .logo img {
-    height: 200px;
+    height: 12em;
     margin-top: 5px;
 }
 .logo svg {
