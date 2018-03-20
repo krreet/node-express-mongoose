@@ -57,8 +57,9 @@ img {
     overflow: hidden;
 }
 .logo img {
-    height: 13rem;
+    height: auto;
     margin-top: 5px;
+    width: 100%;
 }
 .logo svg {
     fill: #369;
