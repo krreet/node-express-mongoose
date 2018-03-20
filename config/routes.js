@@ -180,6 +180,11 @@ refcode = result._id;
   app.get('/:dynamicroute', function (req, res) {
     // res.send({ "param" : req.params.dynamicroute });
     let dyn = req.params.dynamicroute;
+
+if(dyn != "favicon.ico"){
+
+
+
     let invited = 0;
     let earned = 0;
 
@@ -200,7 +205,10 @@ refcode = result._id;
 
     });
 
+  }else{
 
+    res.status(500).send('nOT FOUND');
+  }
   });
 
   // app.get('/', home.index);
