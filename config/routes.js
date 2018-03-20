@@ -39,7 +39,7 @@ eadd = req.body.address;
     const user = new User({
 ethaddress:  eadd,
 _id : refcode,
-points : '0'
+points : 0
 
     });
     if (ethereum_address.isAddress(eadd)) {
@@ -47,6 +47,8 @@ points : '0'
       User.findOne({ ethaddress : eadd }).exec().then(doc => {
 
         refcode =   doc._id;
+        res.json({ 'url' : '/' + refcode });
+        
 
       }).catch(err => {
       
@@ -61,11 +63,11 @@ points : '0'
           
             User.findOne({ _id : refsucc }).exec().then(doc => {
           
-              temppoint = +doc.points;
+              temppoint = doc.points;
           
               if (temppoint){
           let poi = temppoint + 1;
-                User.update( { _id : refsucc } , { $set : { points : poi.toString() } } ).exec().then( res => { console.log(res);  }).catch(err => console.log(err));
+                User.update( { _id : refsucc } , { $set : { points : poi } } ).exec().then( res => { console.log(res);  }).catch(err => console.log(err));
               }
           
             }  ).catch(err => { console.log(err) ;
@@ -114,7 +116,7 @@ let  earned = 0;
 console.log(doc);
 
 if ( doc.points){
-  invited = +doc.points - 1;
+  invited = doc.points - 1;
 earned = 200 + 120 * (invited);
 }
 res.render('step2', { code: req.params.dynamicroute ,  invited : invited , earned : earned  });
