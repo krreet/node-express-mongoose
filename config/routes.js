@@ -105,7 +105,7 @@ if ( doc.points){
 earned = 200 + 120 * (invited);
 }
 res.render('step2', { code: req.params.dynamicroute ,  invited : invited , earned : earned  });
-   }).catch(err => { console.log(err) ;
+   }).catch(err => {   res.redirect('/');  console.log(err) ;
   
   });
 
