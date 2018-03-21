@@ -59,13 +59,13 @@ let user = new User({
             if (refsucc) {
 
 
-              let temppoint;
+              let temppoint = 0;
   
               User.findOne({ _id: refsucc }).exec().then(doc => {
   
-                let temppoint = doc.points;
+                let temppoint = +doc.points;
   
-                if (temppoint) {
+                if (temppoint > 0) {
                   let poi = temppoint + 1;
                   User.update({ _id: refsucc }, { $set: { points: poi } }).exec().then(resu => {
                     console.log(resu);
