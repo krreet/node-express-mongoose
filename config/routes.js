@@ -36,12 +36,7 @@ module.exports = function (app, passport) {
     eadd = req.body.address;
 
 
-    let user = new User({
-      ethaddress: eadd,
-      _id: refcode,
-      points: 0
-
-    });
+    
     if (ethereum_address.isAddress(eadd)) {
       console.log('Valid ethereum address.');
 
@@ -52,7 +47,12 @@ module.exports = function (app, passport) {
         if (err) { console.log(err); res.json({ 'url': '/' + refcode }); }
         if (!result) {
           // do stuff here
+let user = new User({
+      ethaddress: eadd,
+      _id: refcode,
+      points: 0
 
+    });
           user.save().then(result => {
             console.log('save result' + result);
           
