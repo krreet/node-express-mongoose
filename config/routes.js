@@ -36,7 +36,7 @@ module.exports = function (app, passport) {
     eadd = req.body.address;
 
 
-    const user = new User({
+    let user = new User({
       ethaddress: eadd,
       _id: refcode,
       points: 0
